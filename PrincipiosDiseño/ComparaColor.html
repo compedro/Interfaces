@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Tres Rojos</title>
+    <style>
+        /* Elimina los márgenes por defecto del navegador */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            height: 100vh;
+            font-family: sans-serif;
+            overflow: hidden;
+        }
+
+        /* Configuración común para las tres secciones */
+        .color-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        /* Colores de fondo de cada marca */
+        .rojo-puro {
+            background-color: #FF0000;
+        }
+
+        .rojo-cocacola {
+            background-color: #F40009;
+        }
+
+        .rojo-nintendo {
+            background-color: #E60012;
+        }
+
+        /* Estilo de los botones */
+        .btn-descubrir {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            padding: 12px 20px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 25px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .btn-descubrir:hover {
+            background-color: white;
+            color: black;
+            text-shadow: none;
+        }
+
+        /* Contenedor de información oculta */
+        .info {
+            display: none; /* Oculto por defecto */
+            text-align: center;
+            animation: fadeIn 0.5s ease forwards;
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 250px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin: 0 0 10px 0;
+        }
+
+        /* Estilo para los datos técnicos en lista */
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        li strong {
+            color: #ffeb3b; /* Resalta las etiquetas en amarillo suave para legibilidad */
+        }
+
+        /* Animación suave para mostrar el texto */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. ROJO PURO -->
+    <div class="color-column rojo-puro">
+        <button class="btn-descubrir" onclick="revelar(this)">Ver Info</button>
+        <div class="info">
+            <h1>Rojo Puro</h1>
+            <ul>
+                <li><strong>HEX:</strong> #FF0000</li>
+                <li><strong>RGB:</strong> 255, 0, 0</li>
+                <li><strong>CMYK:</strong> 0, 100, 100, 0</li>
+                <li><strong>Pantone:</strong> Pure Red</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 2. ROJO COCA-COLA -->
+    <div class="color-column rojo-cocacola">
+        <button class="btn-descubrir" onclick="revelar(this)">Ver Info</button>
+        <div class="info">
+            <h1>Coca-Cola</h1>
+            <ul>
+                <li><strong>HEX:</strong> #F40009</li>
+                <li><strong>RGB:</strong> 244, 0, 9</li>
+                <li><strong>CMYK:</strong> 4, 100, 95, 0</li>
+                <li><strong>Pantone:</strong> 485 C</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 3. ROJO NINTENDO -->
+    <div class="color-column rojo-nintendo">
+        <button class="btn-descubrir" onclick="revelar(this)">Ver Info</button>
+        <div class="info">
+            <h1>Nintendo</h1>
+            <ul>
+                <li><strong>HEX:</strong> #E60012</li>
+                <li><strong>RGB:</strong> 230, 0, 18</li>
+                <li><strong>CMYK:</strong> 0, 100, 92, 10</li>
+                <li><strong>Pantone:</strong> 2035 C</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function revelar(boton) {
+            // Oculta el botón presionado
+            boton.style.display = 'none';
+            
+            // Muestra la tarjeta con los datos técnicos correspondientes
+            const infoDiv = boton.nextElementSibling;
+            infoDiv.style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración: El Uso del Espacio en Blanco (White Space)</title>
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --card-bg: #1e293b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* 1. EJEMPLO DE MACRO-ESPACIO */
+        .macro-space-hero {
+            padding: 10rem 2rem; 
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            border-bottom: 1px solid #334155;
+        }
+
+        .hero-tag {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem; 
+            display: inline-block;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0 0 2rem 0; 
+            letter-spacing: -0.03em;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .btn-premium {
+            background-color: var(--text-light);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-premium:hover {
+            transform: scale(1.05);
+        }
+
+        /* 2. EJEMPLO DE MICRO-ESPACIO */
+        .micro-space-section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem; 
+            margin-top: 3rem;
+        }
+
+        /* TARJETA CORRECTA: Con buen micro-espacio */
+        .ui-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem; /* Amortiguador visual generoso */
+            border: 1px solid #334155;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem; /* Separación limpia */
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .card-body {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7; /* Texto que respira */
+            margin-bottom: 1.5rem;
+        }
+
+        .card-footer {
+            border-top: 1px solid #334155;
+            padding-top: 1rem; 
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* ----------------------------------------------------
+           NUEVO: TARJETA ASFIXIADA (Mala práctica de UI)
+           Elimina por completo el micro-espacio y el interlineado.
+           ---------------------------------------------------- */
+        .ui-card-choked {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            border: 2px dashed var(--danger); /* Borde de advertencia */
+            padding: 4px; /* ERROR UI: Casi sin padding interno */
+        }
+
+        .choked-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2px; /* ERROR UI: Elementos pegados */
+        }
+
+        .choked-body {
+            color: #748094;
+            font-size: 0.95rem;
+            line-height: 1.0; /* ERROR UI: Líneas colapsadas una sobre otra */
+            margin-bottom: 4px;
+        }
+
+        .choked-footer {
+            border-top: 1px solid #334155;
+            padding-top: 2px;
+            font-size: 0.85rem;
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. DEMOSTRACIÓN DE MACRO-ESPACIO -->
+    <main class="macro-space-hero">
+        <span class="hero-tag">Macro-Espacio en Acción</span>
+        <h1 class="hero-title">Menos elementos. Más impacto.</h1>
+        <p class="hero-description">
+            Al rodear este bloque con un margen masivo de aire, obligamos al usuario a concentrarse únicamente en el mensaje.
+        </p>
+        <button class="btn-premium">Descubrir orden</button>
+    </main>
+
+    <!-- 2. DEMOSTRACIÓN DE MICRO-ESPACIO vs ASFIXIA -->
+    <section class="micro-space-section">
+        <span class="section-label">Comparativa: Diseño Saludable vs Diseño Asfixiado</span>
+        
+        <div class="grid">
+            <!-- Tarjeta 1 (Correcta) -->
+            <div class="ui-card">
+                <div class="card-header">
+                    <h3 class="card-title">Diseño Saludable</h3>
+                    <span style="font-size: 0.75rem; color: #4ade80;">● Correcto</span>
+                </div>
+                <p class="card-body">
+                    El micro-espacio controla la separación entre elementos hermanos. Un buen espacio entre títulos e interlineado incrementa notablemente la velocidad de lectura.
+                </p>
+                <div class="card-footer">
+                    Ver reportes detallados ➔
+                </div>
+            </div>
+
+            <!-- Tarjeta 2 (Correcta) -->
+            <div class="ui-card">
+                <div class="card-header">
+                    <h3 class="card-title">Carga Cognitiva</h3>
+                    <span style="font-size: 0.75rem; color: var(--accent);">Estable</span>
+                </div>
+                <p class="card-body">
+                    El padding de 2rem actúa como un amortiguador visual que ayuda al cerebro a procesar la información de este contenedor de manera aislada y tranquila.
+                </p>
+                <div class="card-footer">
+                    Optimizar interfaz ➔
+                </div>
+            </div>
+
+            <!-- Tarjeta 3 (ASFIXIADA / MALA PRÁCTICA) -->
+            <div class="ui-card-choked">
+                <div class="choked-header">
+                    <h3 class="card-title" style="color: var(--danger);">Diseño Asfixiado</h3>
+                    <span style="font-size: 0.75rem; color: var(--danger);">⚠️ Error</span>
+                </div>
+                <p class="choked-body">
+                    Esta tarjeta carece de micro-espacio. El texto choca con los bordes del contenedor, y al tener un line-height colapsado (1.0), las letras se enciman y fatigan al usuario. El cerebro rechaza leer bloques tan densos y desordenados.
+                </p>
+                <div class="choked-footer">
+                    Evitar este error ➔
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>

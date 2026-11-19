@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración: Control de Peso Visual en UI</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --primary-hover: #1d4ed8;
+            --text-dark: #0f172a;
+            --text-muted: #64748b;
+            --bg-light: #f8fafc;
+            --border-color: #e2e8f0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.5;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .intro {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* Sección de Demostración */
+        .demo-section {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background-color: #dbeafe;
+            color: var(--primary-color);
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        /* 1. Ejemplo de Tamaño y Escala (CTAs) */
+        .cta-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 0.75rem 2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            transition: background 0.2s;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-secondary {
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #f1f5f9;
+            color: var(--text-dark);
+        }
+
+        /* 2. Ejemplo de Color y Contraste */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: #ffffff;
+        }
+
+        .card.featured {
+            border: 2px solid var(--primary-color);
+            position: relative;
+            transform: scale(1.02);
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1);
+        }
+
+        .card-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 700;
+            color: var(--text-muted);
+        }
+
+        .featured .card-tag {
+            color: var(--primary-color);
+        }
+
+        .card-price {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0.5rem 0;
+        }
+
+        /* 3. Ejemplo de Densidad de Texto */
+        .article-demo {
+            max-width: 650px;
+        }
+
+        .article-title {
+            font-size: 1.75rem;
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .article-meta {
+            font-size: 0.87rem;
+            color: var(--text-muted);
+            margin-bottom: 1.25rem;
+        }
+
+        .article-body {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #334155;
+            text-align: justify;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Control de Peso Visual en UI</h1>
+            <p class="intro">Esta página interactiva ejemplifica cómo el cerebro procesa la jerarquía visual mediante código limpio.</p>
+        </header>
+
+        <!-- EJEMPLO 1: TAMAÑO Y ESCALA -->
+        <section class="demo-section">
+            <span class="badge">1. Tamaño y Escala</span>
+            <h2>Botones de Acción (CTAs) con Pesos Diferenciados</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">El ojo humano viaja inmediatamente al botón grande. El botón secundario es intencionalmente más pequeño para no competir por la atención del usuario.</p>
+            
+            <div class="cta-container">
+                <!-- Botón Principal: Más grande y dominante -->
+                <button class="btn-primary">Comenzar Prueba Gratis</button>
+                <!-- Botón Secundario: Más pequeño y discreto -->
+                <button class="btn-secondary">Saber más</button>
+            </div>
+        </section>
+
+        <!-- EJEMPLO 2: COLOR Y CONTRASTE -->
+        <section class="demo-section">
+            <span class="badge">2. Color y Contraste</span>
+            <h2>Tarjetas de Precios con Elemento Destacado (Featured)</h2>
+            
+            <div class="card-grid">
+                <!-- Tarjeta Estándar (Bajo peso) -->
+                <div class="card">
+                    <span class="card-tag">Plan Básico</span>
+                    <div class="card-price">$9<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);">/mes</span></div>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Acceso limitado a las herramientas esenciales.</p>
+                </div>
+
+                <!-- Tarjeta Destacada (Alto peso mediante color del borde y etiquetas) -->
+                <div class="card featured">
+                    <span class="card-tag">Plan Pro (Recomendado)</span>
+                    <div class="card-price" style="color: var(--primary-color);">$29<span style="font-size: 1rem; font-weight: 400; color: var(--text-muted);">/mes</span></div>
+                    <p style="color: var(--text-dark); font-size: 0.9rem; font-weight: 500;">Todo lo del plan básico más funciones avanzadas ilimitadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EJEMPLO 3: DENSIDAD DE TEXTO -->
+        <section class="demo-section">
+            <span class="badge">3. Densidad de Texto (Tipografía)</span>
+            <h2>Estructura de Bloques de Lectura</h2>
+            
+            <div class="article-demo">
+                <!-- El título usa un peso tipográfico muy grueso (900) y un tamaño grande para anclar la mirada -->
+                <div class="article-title">Los titulares gruesos actúan como anclas visuales en la lectura web</div>
+                
+                <!-- Los metadatos usan un color gris (muted) para reducir su peso a pesar de estar arriba -->
+                <div class="article-meta">Por Pedro Lima • Publicado el 25 de Septiembre</div>
+                
+                <!-- El cuerpo del texto usa un peso regular y un color suavizado para no fatigar la vista -->
+                <p class="article-body">
+                    Cuando un usuario entra a un sitio web, no lee inmediatamente todo el contenido. En su lugar, realiza un escaneo visual rápido. Al utilizar una tipografía muy pesada y condensada en el título principal, creamos un punto de entrada obligatorio. El texto de este párrafo, al ser más ligero y con mayor espacio entre líneas, equilibra la composición facilitando una lectura fluida y descansada.
+                </p>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

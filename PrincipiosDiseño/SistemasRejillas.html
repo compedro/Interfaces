@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demostración Explicativa: Sistemas de Rejillas y Alineación</title>
+    <style>
+        :root {
+            --bg-app: #f1f5f9;
+            --surface: #ffffff;
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --primary: #4f46e5;
+            --accent: #10b981;
+            --warning: #f59e0b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg-app);
+            color: var(--text-main);
+            margin: 0;
+            padding: 2rem;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 0 0 0.5rem 0;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* REJILLA PRINCIPAL DE 12 COLUMNAS */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        /* COMPORTAMIENTO DE LAS COLUMNAS */
+        .col-4 {
+            grid-column: span 4;
+        }
+
+        .col-8 {
+            grid-column: span 8;
+        }
+
+        .col-sidebar {
+            grid-column: span 4;
+        }
+
+        /* RUPTURA ESTRATÉGICA DE LA REJILLA */
+        .col-12-break {
+            grid-column: span 12;
+            border-left: 4px solid var(--warning);
+            background-color: #fffbeb;
+        }
+
+        /* ALINEACIÓN INTERNA CON FLEXBOX */
+        .metric-header {
+            display: flex;
+            justify-content: space-between; /* Extremos */
+            align-items: center;            /* Centro vertical */
+            margin-bottom: 1rem;
+        }
+
+        .metric-title {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .icon-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .chart-placeholder {
+            height: 180px;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            border: 2px dashed var(--border);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .col-4, .col-8, .col-sidebar {
+                grid-column: span 12;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Sistemas de Rejillas y Alineación en UI</h1>
+            <p class="subtitle">Este Tablero de Control utiliza sus propios textos para explicar la teoría matemática detrás de su estructura.</p>
+        </header>
+
+        <div class="dashboard-grid">
+
+            <!-- 1. EJEMPLO DE RUPTURA DE LA REJILLA -->
+            <div class="card col-12-break">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <span style="font-size: 1.5rem;">🚨</span>
+                    <div>
+                        <strong style="color: #92400e;">Ruptura del Ritmo Visual (Ocupa 12 Columnas):</strong> 
+                        <span style="color: #b45309;">Al expandirse por todo el ancho horizontal, este bloque rompe deliberadamente la rejilla. Esto genera una interrupción en el escaneo del usuario, obligando al cerebro a captar este mensaje de alta prioridad antes que el resto.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. FILA DE SIMETRÍA Y REPETICIÓN (3 columnas de valor 4 cada una) -->
+            <!-- Tarjeta 1 -->
+            <div class="card col-4">
+                <div class="metric-header">
+                    <h3 class="metric-title">Equilibrio Simétrico</h3>
+                    <div class="icon-badge" style="background-color: #e0e7ff; color: var(--primary);">1/3</div>
+                </div>
+                <p class="metric-value">Matemático</p>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Esta tarjeta ocupa exactamente 4 de las 12 columnas disponibles (un tercio del total).</span>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="card col-4">
+                <div class="metric-header">
+                    <h3 class="metric-title">Consistencia</h3>
+                    <div class="icon-badge" style="background-color: #d1fae5; color: var(--accent);">2/3</div>
+                </div>
+                <p class="metric-value">Ritmo Visual</p>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Al repetir el mismo tamaño (4 columnas) tres veces, el cerebro interpreta orden, calma y profesionalismo.</span>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="card col-4">
+                <div class="metric-header">
+                    <h3 class="metric-title">Alineación Horizontal</h3>
+                    <div class="icon-badge" style="background-color: #fee2e2; color: #ef4444;">3/3</div>
+                </div>
+                <p class="metric-value">Puntos de Anclaje</p>
+                <span style="font-size: 0.85rem; color: var(--text-muted);">Las tres partes superiores comparten una misma línea invisible de altura, logrando estabilidad física simulada.</span>
+            </div>
+
+            <!-- 3. COMPOSICIÓN ASIMÉTRICA EQUILIBRADA (8 columnas vs 4 columnas) -->
+            <!-- Bloque de Mayor Peso Visual (Gráfico) -->
+            <div class="card col-8">
+                <div class="metric-header">
+                    <h3 class="metric-title" style="color: var(--text-main);">Elemento Dominante (Ocupa 8 Columnas)</h3>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Jerarquía UI</span>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">
+                    Este contenedor tiene el mayor **peso visual** de la fila debido a su tamaño masivo. En diseño de interfaces, se le asigna este espacio al módulo más valioso (como gráficos o flujos de conversión) para dictar al usuario dónde pasar más tiempo mirando.
+                </p>
+                <div class="chart-placeholder">
+                    [ Alineación con Flexbox: Este cuadro de texto interno está perfectamente centrado de forma vertical y horizontal para equilibrar el espacio vacío dentro del contenedor ]
+                </div>
+            </div>
+
+            <!-- Bloque de Menor Peso Visual (Barra Lateral) -->
+            <div class="card col-sidebar">
+                <h3 class="metric-title" style="color: var(--text-main); margin-bottom: 1rem;">Contrapeso (Ocupa 4 Columnas)</h3>
+                <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+                    Aplica la **Ley de la Palanca Visual**. Aunque este bloque es más pequeño que su vecino de la izquierda, la interfaz no se siente "desbalanceada" porque su peso se compensa al estar alineado en el extremo derecho de la pantalla.
+                </p>
+                <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.85rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;">
+                        <strong>Alineación en Extremos:</strong>
+                        <span style="color: var(--text-muted);">Usa flex space-between</span>
+                    </li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between;">
+                        <strong>Eje Vertical:</strong>
+                        <span style="color: var(--text-muted);">Elementos al centro</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selector de Paletas - Regla 60-30-10</title>
+    <style>
+        /* ------------------------------------------------------------------------
+            1. CONFIGURACIÓN DE PALETAS (Cambiadas dinámicamente con JS)
+        ------------------------------------------------------------------------ */
+        
+        /* --- GRUPO 1: ESTILOS DE DISEÑO ORIGINALES --- */
+        :root {
+            /* 1. Corporativa Confiable (Por defecto) */
+            --color-60-fondo: #f8fafc;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #0f172a;
+            --color-30-mutado: #475569;
+            --color-30-bloque: #1e293b;
+            --color-10-acento: #3b82f6; 
+            --color-10-acento-hover: #2563eb;
+        }
+
+        .paleta-moderna {
+            /* 2. Tecnología Moderna */
+            --color-60-fondo: #fafafa;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #171717;
+            --color-30-mutado: #525252;
+            --color-30-bloque: #262626;
+            --color-10-acento: #f97316; 
+            --color-10-acento-hover: #ea580c;
+        }
+
+        .paleta-premium {
+            /* 3. Premium Dark Mode */
+            --color-60-fondo: #0f172a;
+            --color-60-tarjeta: #1e293b;
+            --color-30-texto: #f8fafc;
+            --color-30-mutado: #94a3b8;
+            --color-30-bloque: #334155;
+            --color-10-acento: #10b981; 
+            --color-10-acento-hover: #059669;
+        }
+
+        .paleta-creativa {
+            /* 4. Creativa Intensa */
+            --color-60-fondo: #f4f4f5;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #2e1065; 
+            --color-30-mutado: #6b21a8;
+            --color-30-bloque: #4c1d95;
+            --color-10-acento: #f43f5e; 
+            --color-10-acento-hover: #e11d48;
+        }
+
+        /* --- GRUPO 2: PSICOLOGÍA DEL COLOR --- */
+        .paleta-psico-azul {
+            /* 5. Azul: Confianza y Seguridad */
+            --color-60-fondo: #f0f9ff;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #0c4a6e;
+            --color-30-mutado: #0369a1;
+            --color-30-bloque: #075985;
+            --color-10-acento: #0284c7; 
+            --color-10-acento-hover: #0369a1;
+        }
+
+        .paleta-psico-verde {
+            /* 6. Verde: Salud y Sostenibilidad */
+            --color-60-fondo: #f0fdf4;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #14532d;
+            --color-30-mutado: #166534;
+            --color-30-bloque: #052e16;
+            --color-10-acento: #22c55e; 
+            --color-10-acento-hover: #16a34a;
+        }
+
+        .paleta-psico-rojo {
+            /* 7. Rojo: Urgencia y Pasión */
+            --color-60-fondo: #fff1f2;
+            --color-60-tarjeta: #ffffff;
+            --color-30-texto: #4c0519;
+            --color-30-mutado: #881337;
+            --color-30-bloque: #431407;
+            --color-10-acento: #ef4444; 
+            --color-10-acento-hover: #dc2626;
+        }
+
+        .paleta-psico-negro {
+            /* 8. Negro/Gris: Lujo y Elegancia */
+            --color-60-fondo: #121212;
+            --color-60-tarjeta: #1e1e1e;
+            --color-30-texto: #f3f4f6;
+            --color-30-mutado: #9ca3af;
+            --color-30-bloque: #27272a;
+            --color-10-acento: #d4af37; /* Dorado de lujo */
+            --color-10-acento-hover: #b4941f;
+        }
+
+        /* ------------------------------------------------------------------------
+            2. ESTILOS DE LA INTERFAZ
+        ------------------------------------------------------------------------ */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--color-60-fondo);
+            color: var(--color-30-texto);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--color-60-tarjeta);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 20px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .selector-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .selector-box label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-30-mutado);
+        }
+
+        select {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 2px solid var(--color-30-mutado);
+            background-color: var(--color-60-tarjeta);
+            color: var(--color-30-texto);
+            font-weight: 600;
+            cursor: pointer;
+            outline: none;
+        }
+        
+        optgroup {
+            font-weight: bold;
+            color: #000;
+        }
+
+        .hero {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--color-60-tarjeta);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--color-30-mutado);
+            max-width: 700px;
+            margin: 0 auto 30px auto;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--color-10-acento);
+            color: #ffffff;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-cta:hover {
+            background-color: var(--color-10-acento-hover);
+        }
+
+        .features {
+            padding: 50px 0;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background-color: var(--color-60-tarjeta);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(0,0,0,0.08);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .card h3 {
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: var(--color-30-mutado);
+        }
+
+        .info-panel {
+            background-color: var(--color-30-bloque);
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .info-panel h4 {
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .info-panel ul {
+            list-style: none;
+        }
+
+        .info-panel li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            min-width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <div class="logo">Armonía<span>Web</span></div>
+            
+            <!-- SELECTOR INTERACTIVO CON 8 OPCIONES -->
+            <div class="selector-box">
+                <label for="palette-selector">Elige una Paleta:</label>
+                <select id="palette-selector">
+                    <optgroup label="Estilos de Diseño">
+                        <option value="corporativa">1. Corporativa Confiable</option>
+                        <option value="moderna">2. Tecnología Moderna</option>
+                        <option value="premium">3. Premium Dark Mode</option>
+                        <option value="creativa">4. Creativa Intensa</option>
+                    </optgroup>
+                    <optgroup label="Psicología del Color">
+                        <option value="psico-azul">5. Azul (Confianza)</option>
+                        <option value="psico-verde">6. Verde (Salud y Sostenibilidad)</option>
+                        <option value="psico-rojo">7. Rojo (Urgencia y Pasión)</option>
+                        <option value="psico-negro">8. Negro/Gris (Lujo)</option>
+                    </optgroup>
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1 id="hero-title">Corporativa Confiable</h1>
+            <p id="hero-desc">Usa el menú superior para ver cómo cambia la personalidad de la web al instante sin alterar las proporciones visuales óptimas.</p>
+            <a href="#" class="btn-cta">Hacer una Acción</a>
+        </div>
+    </section>
+
+    <main class="container features">
+        <div class="grid">
+            <div class="card">
+                <h3>El Lienzo (60%)</h3>
+                <p>El color dominante siempre proporciona el espacio vital. Cambia drásticamente entre luz y oscuridad según la paleta que elijas.</p>
+            </div>
+            <div class="card">
+                <h3>La Estructura (30%)</h3>
+                <p>El color secundario define la legibilidad. Si el fondo es oscuro, este texto automáticamente pasa a ser claro para proteger la vista.</p>
+            </div>
+            <div class="card">
+                <h3>El Disparador (10%)</h3>
+                <p>El color de acento se mantiene aislado y estratégico. No importa qué paleta elijas, tu ojo siempre viajará al botón del Hero.</p>
+            </div>
+        </div>
+
+        <!-- Panel de información técnica reactiva con porcentajes -->
+        <div class="info-panel">
+            <h4 id="panel-title">Fórmula Actual</h4>
+            <ul>
+                <li>
+                    <span class="badge" id="badge-60" style="background-color: #e2e8f0; color: #1e293b;">60%</span> 
+                    <span id="text-60">Fondo e interfaz general.</span>
+                </li>
+                <li>
+                    <span class="badge" id="badge-30" style="background-color: #38bdf8; color: #0369a1;">30%</span> 
+                    <span id="text-30">Estructuras de texto y cajas de contenido.</span>
+                </li>
+                <li>
+                    <span class="badge" id="badge-10" style="background-color: var(--color-10-acento); color: #ffffff;">10%</span> 
+                    <span id="text-10">Puntos de conversión y clics críticos.</span>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- ------------------------------------------------------------------------
+        3. SCRIPT JAVASCRIPT: Gestión dinámica de las 8 paletas
+    ------------------------------------------------------------------------ -->
+    <script>
+        const selector = document.getElementById('palette-selector');
+        const body = document.body;
+        
+        // Elementos de texto
+        const heroTitle = document.getElementById('hero-title');
+        const heroDesc = document.getElementById('hero-desc');
+        const text60 = document.getElementById('text-60');
+        const text30 = document.getElementById('text-30');
+        
+        // Elementos de insignias (badges)
+        const badge60 = document.getElementById('badge-60');
+        const badge30 = document.getElementById('badge-30');
+
+        // Todas las clases posibles a remover
+        const paletas = [
+            'paleta-moderna', 'paleta-premium', 'paleta-creativa',
+            'paleta-psico-azul', 'paleta-psico-verde', 'paleta-psico-rojo', 'paleta-psico-negro'
+        ];
+
+        selector.addEventListener('change', function() {
+            // 1. Limpiar clases
+            body.classList.remove(...paletas);
+            
+            // 2. Aplicar lógica según la selección
+            switch(this.value) {
+                
+                // --- GRUPO 1: ESTILOS DE DISEÑO ---
+                case 'moderna':
+                    body.classList.add('paleta-moderna');
+                    heroTitle.textContent = "Tecnología Moderna";
+                    heroDesc.textContent = "Asociado a la innovación y dinamismo. Muy común en plataformas tecnológicas orientadas a la agilidad.";
+                    text60.textContent = "Espacio base limpio y minimalista.";
+                    text30.textContent = "Tipografía neutral para una lectura fluida.";
+                    badge60.style.backgroundColor = "#e5e5e5"; badge60.style.color = "#171717";
+                    badge30.style.backgroundColor = "#fdba74"; badge30.style.color = "#7c2d12";
+                    break;
+                    
+                case 'premium':
+                    body.classList.add('paleta-premium');
+                    heroTitle.textContent = "Premium Dark Mode";
+                    heroDesc.textContent = "Lujo, elegancia y sofisticación. Frecuente en marcas de alta gama y portafolios creativos oscuros.";
+                    text60.textContent = "Fondo oscuro inmersivo y de alto standing.";
+                    text30.textContent = "Paneles de contenido estructurados en tonos profundos.";
+                    badge60.style.backgroundColor = "#334155"; badge60.style.color = "#f8fafc";
+                    badge30.style.backgroundColor = "#6ee7b7"; badge30.style.color = "#064e3b";
+                    break;
+                    
+                case 'creativa':
+                    body.classList.add('paleta-creativa');
+                    heroTitle.textContent = "Creativa Intensa";
+                    heroDesc.textContent = "Evoca pasión, energía y expresión artística. Ideal para captar la atención de comunidades creativas.";
+                    text60.textContent = "Lienzo de fondo neutral suave para contraste artístico.";
+                    text30.textContent = "Estructuras de texto en tonos violetas profundos.";
+                    badge60.style.backgroundColor = "#e4e4e7"; badge60.style.color = "#27272a";
+                    badge30.style.backgroundColor = "#fca5a5"; badge30.style.color = "#881337";
+                    break;
+
+                // --- GRUPO 2: PSICOLOGÍA DEL COLOR ---
+                case 'psico-azul':
+                    body.classList.add('paleta-psico-azul');
+                    heroTitle.textContent = "Azul: Confianza y Seguridad";
+                    heroDesc.textContent = "Transmite confianza, seguridad y profesionalidad. Es el más usado por bancos e instituciones financieras.";
+                    text60.textContent = "Fondo claro que transmite transparencia e higiene visual.";
+                    text30.textContent = "Textos en azul marino para denotar solidez y seriedad.";
+                    badge60.style.backgroundColor = "#bae6fd"; badge60.style.color = "#0369a1";
+                    badge30.style.backgroundColor = "#7dd3fc"; badge30.style.color = "#0c4a6e";
+                    break;
+
+                case 'psico-verde':
+                    body.classList.add('paleta-psico-verde');
+                    heroTitle.textContent = "Verde: Salud y Crecimiento";
+                    heroDesc.textContent = "Asociado a la salud, la sostenibilidad y el crecimiento. Común en plataformas ecológicas o de bienestar.";
+                    text60.textContent = "Fondos suaves que evocan naturaleza y calma.";
+                    text30.textContent = "Elementos de lectura en tonos pino o bosque profundo.";
+                    badge60.style.backgroundColor = "#bbf7d0"; badge60.style.color = "#14532d";
+                    badge30.style.backgroundColor = "#86efac"; badge30.style.color = "#166534";
+                    break;
+
+                case 'psico-rojo':
+                    body.classList.add('paleta-psico-rojo');
+                    heroTitle.textContent = "Rojo: Urgencia y Pasión";
+                    heroDesc.textContent = "Evoca urgencia, pasión o peligro. Muy útil para alertas, errores o rebajas urgentes en e-commerce.";
+                    text60.textContent = "Base cálida para mantener al usuario alerta y activo.";
+                    text30.textContent = "Textos oscuros rojizos que guían la tensión visual.";
+                    badge60.style.backgroundColor = "#fecdd3"; badge60.style.color = "#881337";
+                    badge30.style.backgroundColor = "#fda4af"; badge30.style.color = "#4c0519";
+                    break;
+
+                case 'psico-negro':
+                    body.classList.add('paleta-psico-negro');
+                    heroTitle.textContent = "Negro/Gris: Lujo y Sofisticación";
+                    heroDesc.textContent = "Lujo, elegancia y sofisticación. Frecuente en marcas de alta gama, joyería y portafolios minimalistas.";
+                    text60.textContent = "Oscuridad absoluta o carbón para máximo contraste.";
+                    text30.textContent = "Grises claros y blancos para una lectura refinada.";
+                    badge60.style.backgroundColor = "#3f3f46"; badge60.style.color = "#f4f4f5";
+                    badge30.style.backgroundColor = "#a1a1aa"; badge30.style.color = "#18181b";
+                    break;
+
+                // --- POR DEFECTO ---
+                default: // 'corporativa'
+                    heroTitle.textContent = "Corporativa Confiable";
+                    heroDesc.textContent = "Usa el menú superior para ver cómo cambia la personalidad de la web al instante sin alterar las proporciones visuales óptimas.";
+                    text60.textContent = "Fondo e interfaz general.";
+                    text30.textContent = "Estructuras de texto y cajas de contenido.";
+                    badge60.style.backgroundColor = "#e2e8f0"; badge60.style.color = "#1e293b";
+                    badge30.style.backgroundColor = "#38bdf8"; badge30.style.color = "#0369a1";
+                    break;
+            }
+        });
+    </script>
+</body>
+</html>
